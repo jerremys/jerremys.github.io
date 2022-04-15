@@ -1,0 +1,388 @@
+@import "components/color-variables";
+
+$primary-color-dark: #388E3C !default;
+$primary-color: #4CAF50 !default;
+$primary-color-light: #C8E6C9 !default;
+$primary-color-text: #FFFFFF !default;
+$accent-color: #448AFF !default;
+$accent-color-dark: #2962ff !default;
+$primary-text-color: color("blue-grey", "base") !default;
+$secondary-text-color: #757575 !default;
+$divider-color: #BDBDBD !default;
+$alert-color: #f44336 !default;
+
+$radio-fill-color: color("blue", "accent-1");
+$card-bg-color: color("blue", "darken-2") !default;
+
+.btn.btn-flat{
+  background-color: color("amber", "base");
+  color: $primary-color-text;
+}
+$button-floating-background: $alert-color !default;
+$button-raised-background: color("amber", "base") !default;
+$button-flat-color: color("amber", "base") !default;
+
+@import "materialize";
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+#questions{
+  padding-top: 1.5rem;
+}
+#menu-options{
+  z-index: 1001;
+}
+#slide-out{
+  z-index: 1002;
+}
+.sidenav-trigger {
+  margin-left: 1rem;
+  margin-top: -.5rem;
+  background-color: $primary-color;
+  position: absolute;
+}
+.tap-target h4{
+  color: $primary-color-text
+}
+.tap-target li{
+  font-size: 1.2rem;
+  color: $primary-color-light;
+  line-height: 2;
+}
+.sidenav-trigger:hover {
+  background-color: $primary-color-dark;
+}
+
+.sidenav li, .sidenav li a{
+	color: #757575;
+}
+.sidenav li{
+  padding: 0
+}
+
+.sidenav li.setting {
+	line-height: 1.4;
+	font-size: 1rem;
+	padding: 1.1rem 1rem;
+	font-weight: 700;
+}
+
+.sidenav li.setting label{
+	font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.sidenav li.setting .range-field{
+  margin: 0;
+}
+
+.sidenav h4{
+  color: $secondary-text-color;
+  margin-bottom: 0;
+  font-size: 1.5rem;
+  padding: 0 1rem;
+}
+.brand-logo {
+	display: flex;
+	padding: 1rem;
+	font-size: 1.4rem;
+	line-height: 1.2;
+  color: $primary-color-light;
+  background-color: $accent-color-dark;
+  border-bottom: $secondary-text-color;
+}
+.brand-logo img{
+  height: 50px;
+  width: 50px;
+  margin-right: 1rem;
+}
+.dropdownOptions {
+  min-width: 30rem;
+}
+.card label:hover,
+[type="radio"]:checked+span {
+  color: rgba(255, 255, 255, 1) !important;
+}
+
+.card label {
+  color: #cecccc;
+}
+
+.card .card-content>p {
+  margin: 1rem 0;
+}
+
+.card .card-content,
+.collapsible-body {
+  padding: 16px 36px;
+}
+
+.card .card-title {
+  font-weight: 500;
+  margin: .7rem 1rem;
+  display: inline-block;
+}
+
+.card {
+  color: $primary-color-text;
+}
+.card,
+.collapsible {
+  max-width: 35rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card .collection {
+  border-left: 0 none;
+  border-right: 0 none;
+
+}
+.card .collection .collection-item {
+  border-radius: 0;
+  background-color: transparent;
+  border-left: 0 none;
+  border-right: 0 none;
+}
+
+[type="radio"]:disabled+span {
+  color: rgba(0, 0, 0, 0.2);
+}
+
+[type="radio"]:disabled:not(:checked)+span::before {
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+[type="radio"]:disabled:checked+span {
+  font-size: 2rem !important;
+}
+
+#latinRoot {
+  font-size: 3em;
+  line-height: 3rem;
+}
+
+.card .card-content .card-title {
+  background-color: #ffffff26;
+  margin-left: -36px;
+  margin-right: -36px;
+  margin-top: -16px;
+  padding: 16px 36px;
+  text-align: center;
+  color: #fff;
+}
+
+.subtitle {
+  position: absolute;
+  right: 0;
+  font-size: .8rem;
+  top: 1rem;
+  margin-right: 1.4rem;
+  width: 4rem;
+  text-align: right;
+}
+
+.collapsible li {
+  opacity: 0.3;
+  transition: opacity 0.3s;
+}
+
+.collapsible li:hover,
+.collapsible li.active {
+  opacity: 1;
+}
+
+@media only screen and (min-width: 600px) {
+  #toast-container {
+    top: 10%;
+    width: 30rem;
+    left: 50%;
+    margin-left: -15rem;
+  }
+}
+
+
+
+.collapsible-body p:first-child {
+  margin-top: 0;
+}
+
+.collapsible-body p:last-child {
+  margin-bottom: 0;
+}
+
+#dropdownOptions li {
+  padding: 0 1em;
+}
+
+strong {
+  font-weight: 700;
+}
+
+#dropdownOptions li div.switch {
+  display: inline-block;
+  width: 14rem;
+  text-align: left;
+}
+
+#dropdownOptions li div.switch label span:first-of-type {
+  display: inline-block;
+  width: 5rem;
+  text-align: right;
+}
+
+#dropdownOptions select.browser-default {
+  width: auto;
+}
+
+[type="radio"]:not(:checked)+span,
+[type="radio"]:checked+span,
+#answerContainer label {
+  font-size: 1.5rem !important;
+  font-weight: 300;
+}
+
+[type="radio"]+span::before,
+[type="radio"]+span::after {
+  margin: 8px 0 0 0;
+}
+
+#hintCollapsible .collapsible-header {
+  border-bottom: 0 none;
+}
+
+.card-action .btn {
+  margin-right: 2em;
+}
+
+.toast.correct {
+  background-color: #74b23f;
+}
+
+.toast.incorrect {
+  background-color: #ef6c00;
+}
+
+.btn.next {
+  background-color: #388e3c;
+}
+
+#rootHint .hint:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.material-tooltip {
+  max-width: 15rem;
+}
+
+.collapsible {
+  color: $secondary-text-color;
+}
+
+.collapsible-header h5 {
+  margin: 0;
+  font-size: 1.7rem;
+}
+
+.collapsible-header .material-icons {
+  font-size: 1.4rem;
+  margin-right: 0.5rem;
+}
+
+.dropdown-content li>span {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-content li p.range-field {
+  width: 12rem;
+  margin: 0 2rem 0 0;
+}
+
+.dropdown-content li > a, .dropdown-content li > span {
+	color: $secondary-text-color;
+}
+
+.switch label input[type="checkbox"]:checked + .lever::after,
+input[type="range"]::-moz-range-thumb
+{
+  background-color: color("blue", "accent-2");
+}
+.switch label input[type=checkbox]:checked+.lever:after {
+  background-color: color("blue", "accent-2");
+}
+.switch label input[type="checkbox"]:checked + .lever,
+input[type="range"] + .thumb {
+	background-color: color("blue", "accent-1");
+}
+
+
+
+input[type="range"] + .thumb.active .value {
+	color: #fff;
+	margin-left: -1px;
+	margin-top: 4px;
+	font-size: 14px;
+}
+
+.back-button {
+  position: float;
+}
+
+#reports {
+  min-height: 1000px;
+  display: none;
+}
+
+body #celebrations {
+  display: none;
+}
+
+body.celbrate {
+  overflow: hidden;
+}
+
+body.celbrate #celebrations {
+  display: block;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+#celebrations {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100000;
+  width: 100vw;
+  height: 100vh;
+}
+
+
+span.badge {
+	color: color("blue-grey","lighten-5") !important;
+	border: 1px solid color("blue-grey","darken-1");
+	min-width: 3rem;
+	text-align: center;
+	border-radius: 20%;
+	background-color: color("blue-grey","base");
+	margin-top: -.2rem;
+}
+
+
+.collection-item span.title {
+  min-width: 6rem;
+  display: inline-block;
+  font-weight: 700;
+  text-align: right;
+  margin-right: 1rem;
+}

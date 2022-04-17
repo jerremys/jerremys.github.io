@@ -7,9 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta name="description" content="A quiz app to learn and practice latin and greek word roots, suffixes, and prefixes" />
 	<meta name="author" content="Jerremy Strassner" />
-	<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<link type="text/css" rel="stylesheet" href="css/latin.min.css">
-	<link type="text/css" rel="stylesheet" href="css/celebrations.min.css">
+	<link type="text/css" rel="stylesheet" href="css/latin.min.css" rel="preload">
 	<meta name="google-site-verification" content="MMLQiQs2Axuz_mG5xZ_u1p0iWhvReEnHLtwdThtUquk" />
 
 	<link rel="img/apple-touch-icon-precomposed" sizes="57x57" href="img/apple-touch-icon-57x57.png" />
@@ -156,7 +154,7 @@
 			<div class="switch"><label><span>Common</span><input type="checkbox" name="allRoots"><span
 						class="lever"></span>All</label></div>
 		</li>
-		<li class="setting">Choices
+		<li class="setting">Choices (<span id="answer-choices"></span>)
 			<p class="range-field"><input type="range" name="answers" min="3" max="10" style="margin: 0" /></p>
 		</li>
 		<li class="divider" tabindex="-1"></li>
@@ -231,12 +229,15 @@
 			</div>
 		</div>
 	</div>
+	<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons&display=swap" rel="preload">
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-	<script src="app/dist/app.prod.js"></script>
-	<script src="app/dist/celebrations.prod.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.0-beta.6/chart.min.js"></script>
+	<script src="app/dist/app.js"></script>
+	<script src="app/dist/celebrations.prod.js" async></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.0-beta.6/chart.min.js" async></script>
+	<link type="text/css" rel="stylesheet" href="css/celebrations.min.css">
+
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-30S92M0SZD"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];

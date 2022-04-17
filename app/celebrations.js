@@ -1,13 +1,17 @@
+const fireworks = {};
+const filler = {};
+const bouncer = {};
+const tree = {};
+const aquarium = {};
+const bear = {};
+const stars = {};
+let explode;
+
+latin.celebrations = [filler, bouncer, fireworks, tree, aquarium, bear, stars];
+
 (function () {
   "use strict";
 
-  const fireworks = {};
-  const filler = {};
-  const bouncer = {};
-  const tree = {};
-  const aquarium = {};
-  const bear = {};
-  const stars = {};
   const canvas = {
     el: document.getElementById("celebrationCanvas"),
     ctx: null,
@@ -63,7 +67,7 @@
     const colors = ['#ffc000', '#ff3b3b', '#ff8400'];
     const bubbles = 25;
 
-    window.explode = (x, y) => {
+    explode = (x, y) => {
       let particles = [];
       let ratio = window.devicePixelRatio;
       let c = document.createElement('canvas');

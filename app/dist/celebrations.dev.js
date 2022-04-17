@@ -6,16 +6,19 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
+var fireworks = {};
+var filler = {};
+var bouncer = {};
+var tree = {};
+var aquarium = {};
+var bear = {};
+var stars = {};
+var explode;
+latin.celebrations = [filler, bouncer, fireworks, tree, aquarium, bear, stars];
+
 (function () {
   "use strict";
 
-  var fireworks = {};
-  var filler = {};
-  var bouncer = {};
-  var tree = {};
-  var aquarium = {};
-  var bear = {};
-  var stars = {};
   var canvas = {
     el: document.getElementById("celebrationCanvas"),
     ctx: null,
@@ -79,7 +82,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var colors = ['#ffc000', '#ff3b3b', '#ff8400'];
     var bubbles = 25;
 
-    window.explode = function (x, y) {
+    explode = function explode(x, y) {
       var particles = [];
       var ratio = window.devicePixelRatio;
       var c = document.createElement('canvas');

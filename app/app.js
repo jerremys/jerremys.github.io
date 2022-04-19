@@ -214,7 +214,7 @@ import {celebrations as latinCelebrations} from './celebrations.js';
 				$nextRoot.removeClass("disabled");
 				$('#answerContainer input').prop('disabled', true);
 
-				if (1 || Math.floor(Math.random() * latin.celebrationChance) === 0) {
+				if (Math.floor(Math.random() * latin.celebrationChance) === 0) {
 					const $el = $("#lets-celebrate");
 					$nextRoot.addClass("disabled");
 					$el.addClass('show');

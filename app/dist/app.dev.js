@@ -242,7 +242,7 @@ var latin = {};
         $nextRoot.removeClass("disabled");
         $('#answerContainer input').prop('disabled', true);
 
-        if (1 || Math.floor(Math.random() * latin.celebrationChance) === 0) {
+        if (Math.floor(Math.random() * latin.celebrationChance) === 0) {
           var $el = $("#lets-celebrate");
           $nextRoot.addClass("disabled");
           $el.addClass('show');

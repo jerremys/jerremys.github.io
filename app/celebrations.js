@@ -1,17 +1,16 @@
-const fireworks = {};
-const filler = {};
-const bouncer = {};
-const tree = {};
-const aquarium = {};
-const bear = {};
-const stars = {};
-let explode;
 
-latin.celebrations = [filler, bouncer, fireworks, tree, aquarium, bear, stars];
+export let celebrations = {};
 
 (function () {
   "use strict";
 
+  const fireworks = {};
+  const filler = {};
+  const bouncer = {};
+  const tree = {};
+  const aquarium = {};
+  const bear = {};
+  const stars = {};
   const canvas = {
     el: document.getElementById("celebrationCanvas"),
     ctx: null,
@@ -67,7 +66,7 @@ latin.celebrations = [filler, bouncer, fireworks, tree, aquarium, bear, stars];
     const colors = ['#ffc000', '#ff3b3b', '#ff8400'];
     const bubbles = 25;
 
-    explode = (x, y) => {
+    window.explode = (x, y) => {
       let particles = [];
       let ratio = window.devicePixelRatio;
       let c = document.createElement('canvas');
@@ -391,7 +390,7 @@ latin.celebrations = [filler, bouncer, fireworks, tree, aquarium, bear, stars];
         /*
         const xAngle = rect.x - (docWidth / 2);
         const yAngle = rect.y - (docHeight / 2);
-
+ 
         ctx.shadowOffsetX = xAngle * 0.2;
         ctx.shadowOffsetY = yAngle * 0.2;
         */
@@ -671,6 +670,15 @@ latin.celebrations = [filler, bouncer, fireworks, tree, aquarium, bear, stars];
     }
   })();
 
+  celebrations = {
+    "fireworks": fireworks,
+    "filler": filler,
+    "bouncer": bouncer,
+    "tree": tree,
+    "aquarium": aquarium,
+    "bear": bear,
+    "stars": stars
+  };
 
   (function () {
     aquarium.show = function (nextFunc) {
@@ -693,3 +701,4 @@ latin.celebrations = [filler, bouncer, fireworks, tree, aquarium, bear, stars];
     };
   })();
 }());
+

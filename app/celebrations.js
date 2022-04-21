@@ -2,7 +2,7 @@
  * Jerremy Strassner
  * jerremy.j.strassner@gmail.com
  *********************************************************/
-let celebrations = {};
+latin.celebrations = {};
 
 (function () {
   "use strict";
@@ -673,7 +673,7 @@ let celebrations = {};
     }
   })();
 
-  celebrations = {
+  latin.celebrations = {
     "fireworks": fireworks,
     "filler": filler,
     "bouncer": bouncer,

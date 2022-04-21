@@ -2,10 +2,6 @@
  * Jerremy Strassner
  * jerremy.j.strassner@gmail.com
  *********************************************************/
-
-
-
-
 let latin = {
 	version: 7,
 	storage: window.localStorage,
@@ -390,8 +386,8 @@ let latin = {
 	},
 	celebrate: function () {
 		$('body').addClass('celbrate');
-		let celebrations = Object.keys(latinCelebrations);
-		latin.celebration = latinCelebrations[celebrations[Math.floor(Math.random() * celebrations.length)]];
+		let celebrations = Object.keys(latin.celebrations);
+		latin.celebration = latin.celebrations[celebrations[Math.floor(Math.random() * celebrations.length)]];
 		latin.celebration.show();
 		$('#celebrations').click(latin.uncelebrate);
 
@@ -401,7 +397,8 @@ let latin = {
 		$('body').removeClass('celbrate');
 		latin.celebration.hide();
 		latin.nextRoot(latin.uncelebrate);
-		$(window).off('resize', window.canvas.resize);
+		if(window.canvas)
+			$(window).off('resize', window.canvas.resize);
 		$('#celebrations').off('click', latin.uncelebrate);
 	}
 };
@@ -626,9 +623,9 @@ latin.db = {
 			}]
 		};
 
-		let $canvas = $('<canvas>');
+		let $canvas = $('<div class="col m12 l6"><canvas></div>');
 		$("#charts").append($canvas);
-		new Chart($canvas[0].getContext('2d'), {
+		new Chart($canvas.find("canvas")[0].getContext('2d'), {
 			type: 'bar',
 			data: questionsAndGuesses,
 			options: {
@@ -676,9 +673,9 @@ latin.db = {
 			}]
 		};
 
-		let $canvas2 = $('<canvas>');
+		let $canvas2 = $('<div class="col m12 l6"><canvas></div>');
 		$("#charts").append($canvas2);
-		new Chart($canvas2[0].getContext('2d'), {
+		new Chart($canvas2.find("canvas")[0].getContext('2d'), {
 			type: 'bar',
 			data: correctPercentChart,
 			options: {

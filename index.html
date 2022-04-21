@@ -84,8 +84,7 @@
 		</div>
 	</div>
 	<div id="reports">
-		<div class="fixed-action-btn"><a class="btn-floating btn-large waves-effect waves-light back-button"
-				href="javascript:latin.hideReports()"><i class="material-icons back-button">arrow_back</i></a></div>
+		<div class="fixed-action-btn"><a class="btn-floating btn-large waves-effect waves-light back-button" id="hideReportButton"><i class="material-icons back-button">arrow_back</i></a></div>
 		<h2>Reports</h2>
 		<div class="row">
 			<div class="col s12 m6 l4">
@@ -160,7 +159,7 @@
 			<p class="range-field"><input type="range" name="answers" min="3" max="10" style="margin: 0" /></p>
 		</li>
 		<li class="divider" tabindex="-1"></li>
-		<li><a href="javascript:latin.showReports()"><i class="material-icons">insert_chart</i> Reports</a></li>
+		<li><a id="showReportButton"><i class="material-icons">insert_chart</i> Reports</a></li>
 		<li><a href="mailto:jerremy.strassner@gmail.com"><i class="material-icons">email</i> Jerremy Strassner</a></li>
 	</ul>
 
@@ -234,7 +233,8 @@
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-	<script src="app/app.js" type="module"></script>
+	<script src="app/dist/app.prod.js" type="module"></script>
+	<script src="app/dist/celebrations.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.0-beta.6/chart.min.js"></script>
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-30S92M0SZD"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-B9HFVPHJPB"></script>

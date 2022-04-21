@@ -1,5 +1,8 @@
-
-export let celebrations = {};
+/********************************************************
+ * Jerremy Strassner
+ * jerremy.j.strassner@gmail.com
+ *********************************************************/
+let celebrations = {};
 
 (function () {
   "use strict";

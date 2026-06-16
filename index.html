@@ -7,24 +7,19 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta name="description" content="A quiz app to learn and practice latin and greek word roots, suffixes, and prefixes" />
 	<meta name="author" content="Jerremy Strassner" />
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
 	<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<link type="text/css" rel="stylesheet" href="css/latin.min.css">
-	<link type="text/css" rel="stylesheet" href="css/celebrations.min.css">
+	<link type="text/css" rel="stylesheet" href="css/latin-min.css">
+	<link type="text/css" rel="stylesheet" href="css/celebrations-min.css">
 	<meta name="google-site-verification" content="MMLQiQs2Axuz_mG5xZ_u1p0iWhvReEnHLtwdThtUquk" />
 
-	<link rel="img/apple-touch-icon-precomposed" sizes="57x57" href="img/apple-touch-icon-57x57.png" />
-	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="img/apple-touch-icon-114x114.png" />
-	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/apple-touch-icon-72x72.png" />
-	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="img/apple-touch-icon-144x144.png" />
-	<link rel="apple-touch-icon-precomposed" sizes="60x60" href="img/apple-touch-icon-60x60.png" />
-	<link rel="apple-touch-icon-precomposed" sizes="120x120" href="img/apple-touch-icon-120x120.png" />
-	<link rel="apple-touch-icon-precomposed" sizes="76x76" href="img/apple-touch-icon-76x76.png" />
 	<link rel="apple-touch-icon-precomposed" sizes="152x152" href="img/apple-touch-icon-152x152.png" />
 	<link rel="icon" type="image/png" href="img/favicon-196x196.png" sizes="196x196" />
-	<link rel="icon" type="image/png" href="img/favicon-96x96.png" sizes="96x96" />
-	<link rel="icon" type="image/png" href="img/favicon-32x32.png" sizes="32x32" />
-	<link rel="icon" type="image/png" href="img/favicon-16x16.png" sizes="16x16" />
-	<link rel="icon" type="image/png" href="img/favicon-128.png" sizes="128x128" />
+
 	<meta name="application-name" content="Latin & Greek Root Quiz" />
 	<meta name="msapplication-TileColor" content="#FFFFFF" />
 	<meta name="msapplication-TileImage" content="img/mstile-144x144.png" />
@@ -35,135 +30,78 @@
 
 	<meta name="mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-capable" content="yes">
-
 </head>
 
 <body>
+	<div class="card-container">
+		<div class="card">
+			<div class="card-title">
+				<h2 id="latinRoot">Loading</h2>
+				<div id="loading">
+					<div class="loader"></div>
+				</div>
+			</div>
+			<div class="card-content" id="answerContainer"></div>
+			<div class="card-action" id="root-actions">
+				<a href="javascript:void(0);" id="nextRoot" class="btn">Next</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="hint-container">
+		<div class="card hint" id="hint_card">
+			<div class="card-title">
+				<h2 id="hint-card">Hint</h2>
+			</div>
+			<div class="card-content">
+				<p><strong>Origin</strong><span id="rootOrigin"></span></p>
+				<p><strong>Examples</strong><span id="rootHint"></span></p>
+			</div>
+		</div>
+	</div>
+	<a id="hint-marker" href="javascript: $('html, body').animate({ scrollTop: $(document).height() });">
+		<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns%23" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns%23" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 115.4 122.88" version="1.1">
+			<defs id="defs9" />
+			<title id="title2">down-arrow</title>
+			<path d="M24.94,55A14.66,14.66,0,0,0,4.38,75.91l43.45,42.76a14.66,14.66,0,0,0,20.56,0L111,76.73A14.66,14.66,0,0,0,90.46,55.82l-18,17.69-.29-59.17c-.1-19.28-29.42-19-29.33.24l.29,58.34L24.94,55Z" id="path4" style="fill:#ffffff;fill-opacity:1" />
+		</svg>
+	</a>
+	<div id="top-of-site-pixel-anchor"></div>
+	<p id="page-end">&nbsp;</p>
 	<div id="exclamation">Nice!</div>
-	<div id="lets-celebrate" class="zigzag">Lets Celebrate!</div>
-	<div id="questions">
-		<div class="tap-target" data-target="menu-options">
-			<div class="tap-target-content">
-				<h4>Click here to</h4>
-				<ul>
-					<li><i class="material-icons">arrow_forward</i>See reports<li>
-					<li><i class="material-icons">arrow_forward</i>Change difficulty</li>
-					<li><i class="material-icons">arrow_forward</i>Show hints</li>
-					<li><i class="material-icons">arrow_forward</i>Change options</li>
-				</ul>
+	<div id="lets-celebrate" class="zigzag">Nice!</div>
+
+	<div class="wrapper">
+		<input type="checkbox" id="btn" hidden />
+		<label for="btn" class="menu-btn">
+			<i class="fas fa-bars">☰</i>
+			<i class="fas fa-times">🗙</i>
+		</label>
+		<nav id="sidebar">
+			<div class="title"><img src="img/logo.png" />
+				<h1>LaŦiŋ & Grεεk Řooŧs</h1>
 			</div>
-		</div>
-		<a href="javascript:void(0)" id="menu-options" data-target="slide-out" class="sidenav-trigger btn-floating"><i
-				class="material-icons">menu</i></a>
-		<div class="container">
-			<div class="row">
-				<div class="card">
-					<div class="card-content scale-transition">
-						<span class="card-title" id="latinRoot">Loading</span>
-						<p id="answerContainer"></p>
-					</div>
-					<div class="card-action">
-						<a href="javascript:void(0);" id="nextRoot" class="btn btn-flat">Next</a>
-						<a href="javascript:void(0);" id="checkAnswer" class="btn btn-flat blue lighten-1">Check</a>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<ul class="collapsible" id="hintCollapsible">
+			<form id="settings">
+				<ul class="list-items">
 					<li>
-						<div class="collapsible-header">
-							<h5><i class="material-icons">help</i>Hint</h5>
-						</div>
-						<div class="collapsible-body">
-							<p><strong>Examples: </strong><span id="rootHint"></span></p>
-							<p><strong>Origin: </strong><span id="rootOrigin"></span></p>
-						</div>
+						<input type="checkbox" name="auto_submit" id="auto_submit" value="1" class="setting" checked><label for="auto_submit">Auto submit</label>
 					</li>
+					<li>
+						<input type="checkbox" name="show_hint" id="show_hint" value="1" class="setting" checked><label for="show_hint">Show hints</label>
+					</li>
+					<li>
+						<input type="checkbox" name="all_roots" id="all_roots" value="1" class="setting"><label for="all_roots">Only Common Roots</label>
+					</li>
+					<li>
+						<label for="answer_choices"><span id="selected_answer_choices"></span> Answer Choices</label><input type="range" name="answer_choices" value="5" min="3" max="9" id="answer_choices" class="setting" />
+					</li>
+					<div class="icons">
+						<a href="mailto:jerremy.strassner@gmail.com">✉ jerremy.strassner@gmail.com</a>
+					</div>
 				</ul>
-			</div>
-		</div>
+			</form>
+		</nav>
 	</div>
-	<div id="reports">
-		<div class="fixed-action-btn"><a class="btn-floating btn-large waves-effect waves-light back-button" id="hideReportButton"><i class="material-icons back-button">arrow_back</i></a></div>
-		<h2>Reports</h2>
-		<div class="row">
-			<div class="col s12 m6 l4">
-				<div class="card ">
-					<span class="card-title">Totals</span>
-					<ul class="collection">
-						<li class="collection-item"><span class="title">Questions</span><span
-								id="totals-questions">0</span></li>
-						<li class="collection-item"><span class="title">Answers</span><span id="totals-answers">0</span>
-						</li>
-						<li class="collection-item"><span class="title">Time</span><span id="totals-time">0</span></li>
-					</ul>
-				</div>
-			</div>
-			<div class="col s12 m6 l4">
-				<div class="card ">
-					<span class="card-title">Most correct<span class="subtitle">Avg. Guesses</span></span>
-					<ul class="collection" id="most-correct">
-						<li class="collection-item">Loading...</li>
-					</ul>
-				</div>
-			</div>
-			<div class="col s12 m6 l4">
-				<div class="card ">
-					<span class="card-title">Least correct<span class="subtitle">Avg. Guesses</span></span>
-					<ul class="collection" id="least-correct">
-						<li class="collection-item">Loading...</li>
-					</ul>
-				</div>
-			</div>
-			<div class="col s12 m6 l4">
-				<div class="card ">
-					<span class="card-title">Most seen</span>
-					<ul class="collection" id="most-seen">
-						<li class="collection-item">Loading...</li>
-					</ul>
-				</div>
-			</div>
-			<div class="col s12 m6 l4">
-				<div class="card ">
-					<span class="card-title">Least seen</span>
-					<ul class="collection" id="least-seen">
-						<li class="collection-item">Loading...</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div id="charts"></div>
-		</div>
-	</div>
-
-
-	<ul id="slide-out" class="sidenav">
-		<li> <span class="brand-logo"><img class="circle" src="img/logo.png">LaŦiŋ & Grεεk<br>Řooŧs</span>
-		</li>
-		<li class="setting">Auto submit
-			<div class="switch"><label><span>Off</span><input type="checkbox" name="clickSubmit"><span
-						class="lever"></span>On</label></div>
-		</li>
-		<li class="setting">Show hints
-			<div class="switch"><label><span>Off</span><input type="checkbox" name="showHint"><span
-						class="lever"></span>On</label></div>
-		</li>
-		<li class="setting">Order
-			<div class="switch"><label><span>Alpabetical</span><input type="checkbox" name="randomOrder"><span
-						class="lever"></span>Random</label></div>
-		</li>
-		<li class="setting">Roots
-			<div class="switch"><label><span>Common</span><input type="checkbox" name="allRoots"><span
-						class="lever"></span>All</label></div>
-		</li>
-		<li class="setting">Choices
-			<p class="range-field"><input type="range" name="answers" min="3" max="10" style="margin: 0" /></p>
-		</li>
-		<li class="divider" tabindex="-1"></li>
-		<li><a id="showReportButton"><i class="material-icons">insert_chart</i> Reports</a></li>
-		<li><a href="mailto:jerremy.strassner@gmail.com"><i class="material-icons">email</i> Jerremy Strassner</a></li>
-	</ul>
 
 	<div id="celebrations">
 		<canvas id="celebrationCanvas"></canvas>
@@ -233,20 +171,19 @@
 		</div>
 	</div>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-	<script src="app/dist/app.prod.js"></script>
-	<script src="app/dist/celebrations.prod.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.0-beta.6/chart.min.js"></script>
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-30S92M0SZD"></script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-B9HFVPHJPB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+	<script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+	<script src="app/celebrations-min.js"></script>
+	<script src="app/app-min.js"></script>
 
-  gtag('config', 'G-B9HFVPHJPB');
-</script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-30S92M0SZD"></script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-B9HFVPHJPB"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'G-B9HFVPHJPB');
+	</script>
 
 </body>
 

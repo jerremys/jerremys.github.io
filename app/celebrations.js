@@ -404,6 +404,7 @@ latin.celebrations = {};
 
         ctx.shadowBlur = Math.floor(shadowOffset / 2);
       }
+
       ctx.fillRect(rect.x, rect.y, rect.width, rect.height);
     }
 

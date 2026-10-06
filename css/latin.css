@@ -158,14 +158,16 @@ a.btn:hover {
 }
 
 .card {
-  border: 1px solid #ccc;
-  border-radius: 0.5rem;
-  background-color: #fff;
-  box-shadow: 5px 5px 4px #0003;
-  flex-direction: column;
-  display: flex;
-  max-width: 40rem;
-  width: 60%;
+	border: 1px solid #ccc;
+	border-radius: .5rem;
+	background-color: #fff;
+	box-shadow: 5px 5px 4px #0003;
+	flex-direction: column;
+	display: flex;
+	max-width: 40rem;
+	min-width: 25rem;
+	flex-grow: 1;
+	margin: 0 1rem;
 }
 
 .card.hint strong {
@@ -186,7 +188,7 @@ a.btn:hover {
   left: 0;
   position: absolute;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
 }
@@ -195,7 +197,7 @@ a.btn:hover {
   color: #fff;
   font-weight: 600;
   padding: 1rem;
-  font-size: 2.5rem;
+  font-size: 5vw;
   border-bottom: 1px solid #22345a;
   margin: 0;
 }
@@ -333,8 +335,19 @@ button {
   padding: 1rem;
   margin: 1rem 0;
   text-align: left;
-  font-size: 14pt;
+  font-size: 4vw;
   background-color: #e7e8ec;
+}
+
+@media screen and (min-width: 800px) {
+  button {
+     font-size: 14pt;
+  }
+
+  .card-title h2 {
+    font-size: 2.5rem;
+  }
+
 }
 
 button:hover {

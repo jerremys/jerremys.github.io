@@ -218,7 +218,7 @@ let latin = {
 			$nextRoot.removeClass("disabled");
 			$('#answerContainer input').prop('disabled', true);
 
-			if (Math.floor(Math.random() * latin.celebrationChance) === 0) {
+			if (false && Math.floor(Math.random() * latin.celebrationChance) === 0) {
 				const $el = $("#lets-celebrate");
 				$nextRoot.addClass("disabled");
 				$el.addClass('show');
@@ -229,10 +229,8 @@ let latin = {
 				}, 1600);
 
 			} else if (latin.question.answers.length === 1) {
-				//				debugger
 				const position = $(evt.currentTarget).offset();
 				position.left += 30;
-				//				window.explode(evt.pageX, evt.pageY);
 				const exclamationText = latin.exclamations[Math.floor(Math.random() * latin.exclamations.length)];
 				selected.addClass("correct");
 
@@ -243,7 +241,7 @@ let latin = {
 
 				window.setTimeout(function () {
 					$("#exclamation").removeClass('show');
-				}, 1000);
+				}, 2000);
 
 				if ($("#auto_submit").prop("checked")) {
 					$("div.card").addClass("loading");

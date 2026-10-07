@@ -43,14 +43,12 @@ let latin = {
 			$("#selected_answer_choices").text(this.value);
 		});
 
-
 		if (
 			"IntersectionObserver" in window &&
 			"IntersectionObserverEntry" in window &&
 			"intersectionRatio" in window.IntersectionObserverEntry.prototype
 		) {
 			let observer = new IntersectionObserver(entries => {
-				console.log(`Show: ${entries[0].isIntersecting}`);
 				$("#hint-marker").toggleClass("hidden", entries[0].isIntersecting);
 			});
 
@@ -105,6 +103,8 @@ let latin = {
 		$("#root-actions").toggle(!!!$("#auto_submit").prop("checked"));
 
 		$("#answer_choices").trigger("input");
+
+		latin.handleSettingChanged();
 	},
 	buildCommonIndex: function (commonList = []) {
 		if (latin.roots.length > 0) {
@@ -128,9 +128,6 @@ let latin = {
 		$("#settings input").on("change", latin.handleSettingChanged);
 	},
 	handleSettingChanged: function (el) {
-		const $el = $(el.currentTarget),
-			name = $el.prop("name");
-
 		let currentSettings = {};
 
 		if (latin.currentIndex < 1) {
@@ -171,6 +168,8 @@ let latin = {
 		$("body").toggleClass('show-hint', show);
 	},
 	nextRoot: function (transition = true) {
+		$("html, body").stop().animate({scrollTop:0}, 500, 'swing');
+
 		const newRootIndex = latin.getNextIndex(),
 			newRoot = latin.roots[newRootIndex];
 		let delay = 0;
@@ -206,6 +205,25 @@ let latin = {
 	renderHint: function (hint) {
 		$('#rootHint').html('<span class="hint">' + hint.split(/\s*,\s*/).join('</span>, <span class="hint">') + '</span>');
 	},
+	animateShard: function (shard, index) {
+		// Reset animation
+		shard.style.animation = 'none';
+		shard.offsetHeight; // Trigger reflow
+
+		// Set custom properties
+		const angle = Math.random() * Math.PI * 2;
+		const distance = 50 + Math.random() * 150;
+		const tx = Math.cos(angle) * distance;
+		const ty = Math.sin(angle) * distance;
+		const rotation = (Math.random() - 0.5) * 1440;
+		shard.style.setProperty('--tx', tx + 'px');
+		shard.style.setProperty('--ty', ty + 'px');
+		shard.style.setProperty('--r', rotation + 'deg');
+
+		// Apply animation
+		shard.style.animation = 'explode 1.5s ease ' + (index * 40) + 'ms forwards';
+	},
+
 	checkAnswer: function (evt) {
 		const container = $('#answerContainer');
 		const selected = $(evt.target);
@@ -234,14 +252,34 @@ let latin = {
 				const exclamationText = latin.exclamations[Math.floor(Math.random() * latin.exclamations.length)];
 				selected.addClass("correct");
 
-				$("#exclamation").text(exclamationText).css({
+				var count = 0;
+				const exclamationTextSpans = exclamationText.split('').flatMap(c1 => `<span class="shard" style="--i: ${count++}">${c1}</span>`).join("");
+				var $exclamation = $("#exclamation");
+
+				$exclamation.html(exclamationTextSpans).css({
 					left: evt.pageX,
 					top: evt.pageY
 				}).addClass('show');
 
+				const right = $exclamation.position().left + $exclamation.width();
+
+				if( right > $("body").width() ){
+					$exclamation.css("left", $("body").width() - $exclamation.width());
+				} else if($exclamation.position().left < 0){
+					$exclamation.css("left", 0);
+				}
+
+				const shards = document.querySelectorAll('.shard');
+
 				window.setTimeout(function () {
-					$("#exclamation").removeClass('show');
-				}, 2000);
+					shards.forEach((shard, index) => {
+						latin.animateShard(shard, index);
+					});
+
+					window.setTimeout(function () {
+						$exclamation.removeClass('show');
+					}, 800);
+				}, 400);
 
 				if ($("#auto_submit").prop("checked")) {
 					$("div.card").addClass("loading");
@@ -355,7 +393,6 @@ let latin = {
 
 		if (rootsString === null) {
 			latin.loadJson();
-			$(".tap-target").tapTarget('open');
 		} else {
 			const data = JSON.parse(rootsString);
 

@@ -226,7 +226,7 @@ a.btn:hover {
 .card.hint h3 {
 	color: #22345afc;
 	margin-bottom: 0.3rem;
-	font-size: 1.5rem;
+	font-size: 1rem;
 	background-color: #ededed;
 	padding: 0.4rem;
 	margin-left: -1rem;
@@ -327,7 +327,7 @@ a.btn:hover {
 }
 
 #hint_card {
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
 body.show-hint #hint-marker,
@@ -376,7 +376,7 @@ body.show-hint #top-of-site-pixel-anchor {
 }
 
 .card-content {
-  padding: 0 1rem;
+  padding: 0 1rem 1rem;
   font-family: "Montserrat", sans-serif;
 }
 
